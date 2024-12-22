@@ -120,8 +120,9 @@ export default function AIQuizPage() {
                   <CardTitle>{question.question}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <ul className="list-disc list-inside space-y-2">
+                  <div className="space-y-2">
                     {question.options.map((option, index) => {
+                      const optionNumber = index + 1; // For numbering the options
                       const isSelected =
                         selectedAnswers[question.id] === option;
                       const isCorrect = option === question.answer;
@@ -130,7 +131,7 @@ export default function AIQuizPage() {
                         selectedAnswers[question.id] !== question.answer;
 
                       return (
-                        <li
+                        <div
                           key={index}
                           onClick={() =>
                             handleOptionSelect(question.id, option)
@@ -145,11 +146,11 @@ export default function AIQuizPage() {
                               : "hover:bg-gray-200 dark:hover:bg-gray-700"
                           }`}
                         >
-                          {option}
-                        </li>
+                          {optionNumber}. {option}
+                        </div>
                       );
                     })}
-                  </ul>
+                  </div>
                 </CardContent>
               </Card>
             ))}
